@@ -3,11 +3,11 @@ description: "Get the Dependencies(via npm) and cache them"
 inputs:
   caching:
     description: "whether to use caching"
-    requires: false
+    required: false
     default: "true"
   node_version:
     description: "Node version to be used"
-    requires: false
+    required: false
     default: "20.x"
 runs:
   using: "composite"
