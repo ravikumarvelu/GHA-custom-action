@@ -13,7 +13,7 @@ jobs:
         id: cache
         uses: ./.github/actions/cached-deps
         with:
-          caching: 'false'
+          caching: "false"
       - name: Output the cache
         run: echo "cache used? ${{ steps.cache.outputs.used-cache}}"
       - name: Lint code
@@ -69,6 +69,7 @@ jobs:
       - name: Output contents
         run: ls
       - name: Deploy site
+        id: s3Deploy
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -76,4 +77,5 @@ jobs:
         with:
           bucket: "ravikumar7007"
           dist-folder: ./dist
-
+      - name: Output Information
+        run: 'echo "Live Url: ${{steps.s3Deploy.outputs.website-url}}"'
